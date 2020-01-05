@@ -24,7 +24,11 @@ import com.example.android.devbyteviewer.database.getDatabase
 import com.example.android.devbyteviewer.repository.VideosRepository
 import retrofit2.HttpException
 
-class RefreshDataWork(appContext: Context, params: WorkerParameters): CoroutineWorker(appContext, params) {
+class RefreshDataWorker(appContext: Context, params: WorkerParameters): CoroutineWorker(appContext, params) {
+
+    companion object {
+        const val WORK_NAME = "RereshDataWorker"
+    }
 
     override suspend fun doWork(): Payload {
         val database = getDatabase(applicationContext)
@@ -37,5 +41,4 @@ class RefreshDataWork(appContext: Context, params: WorkerParameters): CoroutineW
             Payload(Result.RETRY)
         }
     }
-
 }
