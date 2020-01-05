@@ -17,6 +17,7 @@
 
 package com.example.android.devbyteviewer.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -26,7 +27,7 @@ import androidx.room.Query
 interface VideoDao {
 
     @Query("select * from databasevideo")
-    fun getVideos(): List<DatabaseVideo>
+    fun getVideos(): LiveData<List<DatabaseVideo>>
 
     // vararg is the same as c# params i.e. String.concat(params string[] values)
     @Insert(onConflict = OnConflictStrategy.REPLACE)
